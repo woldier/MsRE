@@ -20,7 +20,7 @@ MsRE: Towards Efficient Remote Sensing Segmentation via Vision Foundation Models
 </p>
 </div>
 <br/>
-<img src="figs/overview.png" alt="MsRE" style="max-width: 80%; height: auto;"/>
+<img src="figs/overview.png" alt="MsRE" style="max-width: 100%; height: auto;"/>
 <div style="display: flex; align-items: center; justify-content: center;"> Network Overview </div>
 
 </div>
