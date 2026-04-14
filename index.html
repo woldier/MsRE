@@ -258,7 +258,7 @@
             <div class="is-size-5 publication-authors">
               <!-- TODO: Replace with your paper authors and their personal links -->
               <span class="author-block">
-                <a href="FIRST AUTHOR PERSONAL LINK" target="_blank">Bin Wang</a><sup>1</sup>,</span>
+                <a href="https://scholar.google.com/citations?user=Df8myR8AAAAJ&hl=zh-CN&oi=sra" target="_blank">Bin Wang</a><sup>1</sup>,</span>
               <span class="author-block">
                   <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Fei Deng</a><sup>2</sup>,</span>
               <span class="author-block">
@@ -402,6 +402,273 @@
 </section>
 <!-- End paper abstract -->
 
+<section id="benchmark" class="section">
+  <div class="container is-max-widescreen">
+      <h2 class="title is-3 section-header">Performance Highlights</h2>
+      <div class="content">
+          <p>
+              <!--                      Comprehensive comparison of <strong>ACE-Brain-0</strong> against state-of-the-art models across <strong>24-->
+              <!--                      benchmarks</strong> spanning four intelligence domains. <strong>Bold</strong> values denote the best-->
+              <!--                      result per benchmark; <span class="metric-note-inline">↓</span> denotes lower-is-better.-->
+              Semantic segmentation result (mIoU%) comparisons across different methods on the <strong>Potsdam</strong>, <strong>Vaihingen</strong>, and <strong>LoveDA</strong> datasets.
+          </p>
+
+          <div class="table-container benchmark-table-container">
+              <table class="table is-hoverable benchmark-table">
+                  <thead>
+                  <tr>
+                      <th class="bench-name-th">Method</th>
+                      <th>Pre-Train</br>Method</th>
+                      <th>Pre-Train</br>Dataset</th>
+                      <th>Backbone</br>and Scale</th>
+                      <th>Fine-Tune</br>Params<span class="metric-note-inline">↓</span></th>
+                      <th>Potsdam</br>(mIoU%)</th>
+                      <th>Vaihigen</br>(mIoU%)</th>
+                      <th>LoveDA</br>(mIoU%)</th>
+                      <th class="ace-brain-th">Average</br>(mIoU%)</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  <!-- ── Spatial Intelligence ── -->
+                  <tr class="domain-row domain-spatial">
+                      <td colspan="9" style="color: #9b9b9b;"> I. Specific Segmentation Methods</td>
+                  </tr>
+                  <tr class="domain-row domain-spatial">
+                      <td colspan="9" style="color: #c0c0c0; padding-left: 20px;">1. General Segmentation Methods</td>
+                  </tr>
+                  <tr>
+                      <td class="bench-name-td">DeepLabV3+</td>
+                      <td>Supervised</td>
+                      <td>ImageNet1K</td>
+                      <td>Resnet-50</td>
+                      <td>25.2 M</td>
+                      <td>73.43</td>
+                      <td> 71.87</td>
+                      <td> 45.33</td>
+                      <td class="ace-brain-td best-cell">63.54</td>
+                  </tr>
+
+                  <tr>
+                      <td class="bench-name-td">UperNet</td>
+                      <td>Supervised</td>
+                      <td>ImageNet1K</td>
+                      <td>Resnet-50</td>
+                      <td>25.2 M</td>
+                      <td>73.43</td>
+                      <td>71.86</td>
+                      <td>46.28</td>
+                      <td class="ace-brain-td best-cell">63.85</td>
+                  </tr>
+
+                  <tr>
+                      <td class="bench-name-td">Segformer</td>
+                      <td>Supervised</td>
+                      <td>ImageNet1K</td>
+                      <td>MiT-B5</td>
+                      <td>89.9 M</td>
+                      <td> 79.01</td>
+                      <td>74.38</td>
+                      <td>49.69</td>
+                      <td class="ace-brain-td best-cell">67.69</td>
+                  </tr>
+
+                  <tr>
+                      <td class="bench-name-td">Segmenter</td>
+                      <td>Supervised</td>
+                      <td>ImageNet1K</td>
+                      <td>ViT-Large</td>
+                      <td>304.3 M</td>
+                      <td>78.24</td>
+                      <td>73.12</td>
+                      <td>53.34</td>
+                      <td class="ace-brain-td best-cell">68.23</td>
+                  </tr>
+
+
+
+                  <tr class="domain-row domain-driving">
+                      <td colspan="9" style="color: #c0c0c0; padding-left: 20px;">2. Remote Sensing Segmentation Methods</td>
+                  </tr>
+
+
+                  <tr>
+                      <td class="bench-name-td">UNetFormer</td>
+                      <td>Supervised</td>
+                      <td>ImageNet1K</td>
+                      <td>ResNet-18</td>
+                      <td> 11.6 M</td>
+                      <td>74.16</td>
+                      <td>72.38</td>
+                      <td>46.83</td>
+                      <td class="ace-brain-td best-cell">64.45</td>
+                  </tr>
+                  <tr>
+                      <td class="bench-name-td">FSegNet</td>
+                      <td>Supervised</td>
+                      <td>ImageNet1K</td>
+                      <td>FasterViT-3</td>
+                      <td>159.5 M</td>
+                      <td>78.17</td>
+                      <td>74.51</td>
+                      <td>48.93</td>
+                      <td class="ace-brain-td best-cell">67.20</td>
+                  </tr>
+                  <tr>
+                      <td class="bench-name-td">MSEONet</td>
+                      <td>Supervised</td>
+                      <td>ImageNet1K</td>
+                      <td>Resnet-101</td>
+                      <td>44.5 M</td>
+                      <td>74.51</td>
+                      <td>70.08</td>
+                      <td>45.17</td>
+                      <td class="ace-brain-td best-cell">63.25</td>
+                  </tr>
+
+                  <tr>
+                      <td class="bench-name-td">EMGSNet</td>
+                      <td>Supervised</td>
+                      <td>ImageNet1K</td>
+                      <td>PVT-Base</td>
+                      <td>42.1 M</td>
+                      <td>79.64</td>
+                      <td>75.84</td>
+                      <td>52.95</td>
+                      <td class="ace-brain-td best-cell">69.47</td>
+                  </tr>
+
+                  <tr class="domain-row domain-spatial">
+                      <td colspan="9" style="color: #9b9b9b;"> II. Vision Foundation Models</td>
+                  </tr>
+                  <tr>
+                      <td class="bench-name-td">Full Fine-Tuning</td>
+                      <td>DINOv3</td>
+                      <td>LVD-1689M</td>
+                      <td>ViT-Large</td>
+                      <td>303.1 M</td>
+                      <td><strong>81.04</strong></td>
+                      <td>75.12</td>
+                      <td>54.61</td>
+                      <td class="ace-brain-td best-cell"> 70.25</td>
+                  </tr>
+                  <tr class="domain-row domain-spatial">
+                      <td colspan="9" style="color: #c0c0c0; padding-left: 20px;">i. General PEFT Methods
+                      </td>
+                  </tr>
+
+                  <tr>
+                      <td class="bench-name-td">Frozen</td>
+                      <td>DINOv3</td>
+                      <td>LVD-1689M</td>
+                      <td>ViT-Large</td>
+                      <td>0 M</td>
+                      <td>79.21</td>
+                      <td>74.34</td>
+                      <td>52.55</td>
+                      <td class="ace-brain-td best-cell">68.70</td>
+                  </tr>
+
+                  <tr>
+                      <td class="bench-name-td">LoRA</td>
+                      <td>DINOv3</td>
+                      <td>LVD-1689M</td>
+                      <td>ViT-Large</td>
+                      <td>9.43 M</td>
+                      <td>79.67</td>
+                      <td>73.25</td>
+                      <td>53.19</td>
+                      <td class="ace-brain-td best-cell"> 68.70</td>
+                  </tr>
+
+                  <tr>
+                      <td class="bench-name-td">Adapter</td>
+                      <td>DINOv3</td>
+                      <td>LVD-1689M</td>
+                      <td>ViT-Large</td>
+                      <td> 6.24 M</td>
+                      <td>80.35</td>
+                      <td>73.91</td>
+                      <td>54.18</td>
+                      <td class="ace-brain-td best-cell"> 69.48</td>
+                  </tr>
+
+                  <tr>
+                      <td class="bench-name-td">AdaptFormer</td>
+                      <td>DINOv3</td>
+                      <td>LVD-1689M</td>
+                      <td>ViT-Large</td>
+                      <td>3.12 M</td>
+                      <td>79.34</td>
+                      <td> 76.12</td>
+                      <td>15.18</td>
+                      <td class="ace-brain-td best-cell">56.88</td>
+                  </tr>
+
+
+
+                  <tr class="domain-row domain-spatial">
+                      <td colspan="9" style="color: #c0c0c0; padding-left: 20px;">ii. Remote Sensing PEFT Methods
+                      </td>
+                  </tr>
+                  <tr>
+                      <td class="bench-name-td">AiRs</td>
+                      <td>DINOv3</td>
+                      <td>LVD-1689M</td>
+                      <td>ViT-Large</td>
+                      <td> 4.24 M</td>
+                      <td> 79.94</td>
+                      <td>74.78</td>
+                      <td>54.11</td>
+                      <td class="ace-brain-td best-cell">69.61
+                      </td>
+                  </tr>
+
+                  <tr>
+                      <td class="bench-name-td">Tea</td>
+                      <td>DINOv3</td>
+                      <td>LVD-1689M</td>
+                      <td>ViT-Large</td>
+                      <td>11.32 M</td>
+                      <td>80.43</td>
+                      <td>75.01</td>
+                      <td>54.36</td>
+                      <td class="ace-brain-td best-cell"> 69.93</td>
+                  </tr>
+
+                  <tr class="domain-row domain-spatial">
+                      <td colspan="9" style="color: #c0c0c0; padding-left: 20px;">iii. Ours Approach
+                      </td>
+                  </tr>
+                  <tr style="background-color: #efefef">
+                      <td class="bench-name-td">MsRE (ours)</td>
+                      <td>DINOv3</td>
+                      <td>LVD-1689M</td>
+                      <td>ViT-Large</td>
+                      <td>4.64 M</td>
+                      <td>80.98</td>
+                      <td><strong>76.72</strong></td>
+                      <td><strong>54.90</strong></td>
+                      <td class="ace-brain-td best-cell"><strong>70.86</strong></td>
+                  </tr>
+                  </tbody>
+              </table>
+          </div>
+
+          <div class="benchmark-notes">
+              <h4>Notes:</h4>
+              <ul>
+                  <li>The results in each column is highlighted in <strong>bold</strong>.</li>
+                  <li>All Vision Foundation models are evaluated using the Segmenter head for fair comparison.</li>
+                  <li>"Fine-Tune Params" refer to the number of trainable parameters in the backbone on the downstream tasks.</li>
+                  <li>"Supervised" stands for supervised learning.</li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</section>
+
+
 
 <!-- Image carousel -->
 <section class="hero is-small">
@@ -410,38 +677,46 @@
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
         <!-- TODO: Replace with your research result images -->
-        <img src="static/images/carousel1.jpg" alt="First research result visualization" loading="lazy"/>
+        <img src="static/images/class_wise_miou.png"
+             style="max-width: 50%; height: auto; display: block; margin: 0 auto;"
+             alt="First research result visualization" loading="lazy"/>
         <!-- TODO: Replace with description of this result -->
         <h2 class="subtitle has-text-centered">
-          First image description.
+            Class-wise IoU comparison on Potsdam, Vaihingen and LoveDA.
         </h2>
       </div>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="Second research result visualization" loading="lazy"/>
+          <img src="static/images/vis_potsdam.png"
+               style="max-width: 50%; height: auto; display: block; margin: 0 auto;"
+               alt="First research result visualization" loading="lazy"/>
         <h2 class="subtitle has-text-centered">
-          Second image description.
+            Visualization of results on Potsdam. Note that all methods are based on DINOv3
         </h2>
       </div>
       <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="Third research result visualization" loading="lazy"/>
+          <img src="static/images/vis_loveda.png"
+               style="max-width: 50%; height: auto; display: block; margin: 0 auto;"
+               alt="First research result visualization" loading="lazy"/>
         <h2 class="subtitle has-text-centered">
-         Third image description.
+            Visualization of results on LoveDA. Note that all methods are based on DINOv3.
        </h2>
      </div>
      <div class="item">
       <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="Fourth research result visualization" loading="lazy"/>
+         <img src="static/images/vis_feat.png"
+              style="max-width: 50%; height: auto; display: block; margin: 0 auto;"
+              alt="First research result visualization" loading="lazy"/>
       <h2 class="subtitle has-text-centered">
-        Fourth image description.
+          PCA visualization of feature representations from different layers (Layer 6, 12, 18, and 24) of MsRE on the Potsdam dataset.
       </h2>
     </div>
   </div>
 </div>
 </div>
 </section>
-<!-- End image carousel -->
+ End image carousel
 
 
 
