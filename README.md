@@ -68,7 +68,6 @@ Torch and torchvision versions relationship.
 
 ## 📂 2.Preparation of datasets
 
----
 
 We selected Postsdam, Vaihingen and LoveDA as benchmark datasets.
 
@@ -164,7 +163,6 @@ python tools/convert_datasets/loveda.py data/LoveDA/ --tmp_dir data -o data/love
 
 ## 🔥 3. Training
 
----
 **🤗🤗 The code will be released soon, so please be patient.**
 
 ## Acknowledgements
