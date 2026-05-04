@@ -35,24 +35,26 @@ MsRE: Towards Efficient Remote Sensing Segmentation via Vision Foundation Models
 
 ## 🛠️️ 1. Creating Virtual Environment
 
----
+This repo use `python-3.8`, for `nvcc -v` with `cuda >= 11.6`.
+
+`torch 2.1.1`, `cuda 12.1`, `mmcv 2.1.0`, `mmengine 0.9.1`
 
 <details>
 <summary>Install script</summary>
 
-```shell
-pip install torch==1.10.2+cu111 -f https://mirror.sjtu.edu.cn/pytorch-wheels/cu111/?mirror_intel_list
-pip install torchvision==0.11.3+cu111 -f https://download.pytorch.org/whl/torch_stable.html 
-pip install mmcv-full==1.5.0 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.10.0/index.html
-pip install kornia matplotlib prettytable timm yapf==0.40.1
-```
 
-for CN user:
 ```shell
-pip install torch==1.10.2+cu111 -f https://mirror.sjtu.edu.cn/pytorch-wheels/cu111/?mirror_intel_list
-pip install torchvision==0.11.3+cu111 -f https://download.pytorch.org/whl/torch_stable.html 
-pip install mmcv-full==1.5.0 -f https://download.openmmlab.com/mmcv/dist/cu111/torch1.10.0/index.html
-pip install kornia matplotlib prettytable timm yapf==0.40.1
+conda create -n  MsRE  python==3.8 -y
+conda activate MsRE
+
+
+pip install torch==2.1.2+cu121  torchvision==0.16.2+cu121 -f https://download.pytorch.org/whl/torch_stable.html
+# for CN user use follow script
+pip install torch==2.1.2+cu121  torchvision==0.16.2+cu121 -f https://mirrors.aliyun.com/pytorch-wheels/cu121/  
+
+pip install mmcv==2.1.0 mmengine==0.9.1 -f https://download.openmmlab.com/mmcv/dist/cu121/torch2.1/index.html
+
+pip install -r submodule-mmseg/requirements/runtime.txt
 ```
 </details>
 
@@ -62,10 +64,6 @@ Torch and torchvision versions relationship.
 
 [![Official Repo](https://img.shields.io/badge/Pytorch-vision_refer-EE4C2C?logo=pytorch)](https://github.com/pytorch/vision#installation)
 [![CSDN](https://img.shields.io/badge/CSDN-vision_refer-FC5531?logo=csdn)](https://blog.csdn.net/shiwanghualuo/article/details/122860521)
-
-Version relationship of mmcv and torch.
-
-[![MMCV](https://img.shields.io/badge/mmcv-vision_refer-blue)](https://mmcv.readthedocs.io/zh-cn/v1.5.0/get_started/installation.html)
 
 
 ## 📂 2.Preparation of datasets
