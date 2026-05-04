@@ -259,10 +259,20 @@
               <!-- TODO: Replace with your paper authors and their personal links -->
               <span class="author-block">
                 <a href="https://scholar.google.com/citations?user=Df8myR8AAAAJ&hl=zh-CN&oi=sra" target="_blank">Bin Wang</a><sup>1</sup>,</span>
+
+                <span class="author-block">
+<!--                    <a href="#" target="_blank">Shun Lv</a>-->
+                    Shun Lv<sup>1</sup>,</span>
+                <span class="author-block">
+<!--                    <a href="#" target="_blank">Zhi Li</a>-->
+                    Zhi Li<sup>1</sup>,</span>
               <span class="author-block">
-                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Fei Deng</a><sup>2</sup>,</span>
+<!--                  <a href="SECOND AUTHOR PERSONAL LINK" target="_blank">Fei Deng</a>-->
+                  Fei Deng<sup>2</sup>,</span>
+
               <span class="author-block">
-                <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Yiguang Liu</a> <sup>1</sup>
+<!--                <a href="THIRD AUTHOR PERSONAL LINK" target="_blank">Yiguang Liu</a> -->
+                    Yiguang Liu<sup>1</sup>
               </span>
             </div>
 
@@ -404,7 +414,7 @@
 
 <section id="benchmark" class="section">
   <div class="container is-max-widescreen">
-      <h2 class="title is-3 section-header">Performance Highlights</h2>
+      <h2 class="title is-3 section-header has-text-centered">Performance Highlights</h2>
       <div class="content">
           <p>
               <!--                      Comprehensive comparison of <strong>ACE-Brain-0</strong> against state-of-the-art models across <strong>24-->
@@ -552,10 +562,6 @@
                       <td>54.61</td>
                       <td class="ace-brain-td best-cell"> 70.25</td>
                   </tr>
-                  <tr class="domain-row domain-spatial">
-                      <td colspan="9" style="color: #c0c0c0; padding-left: 20px;">i. General PEFT Methods
-                      </td>
-                  </tr>
 
                   <tr>
                       <td class="bench-name-td">Frozen</td>
@@ -568,6 +574,13 @@
                       <td>52.55</td>
                       <td class="ace-brain-td best-cell">68.70</td>
                   </tr>
+
+                  <tr class="domain-row domain-spatial">
+                      <td colspan="9" style="color: #c0c0c0; padding-left: 20px;">i. General PEFT Methods
+                      </td>
+                  </tr>
+
+
 
                   <tr>
                       <td class="bench-name-td">LoRA</td>
@@ -605,7 +618,17 @@
                       <td class="ace-brain-td best-cell">56.88</td>
                   </tr>
 
-
+                  <tr>
+                      <td class="bench-name-td">Mona</td>
+                      <td>DINOv3</td>
+                      <td>LVD-1689M</td>
+                      <td>ViT-Large</td>
+                      <td>5.08 M</td>
+                      <td>80.39</td>
+                      <td>74.96</td>
+                      <td>53.87</td>
+                      <td class="ace-brain-td best-cell">69.74</td>
+                  </tr>
 
                   <tr class="domain-row domain-spatial">
                       <td colspan="9" style="color: #c0c0c0; padding-left: 20px;">ii. Remote Sensing PEFT Methods
@@ -671,9 +694,10 @@
 
 
 <!-- Image carousel -->
-<section class="hero is-small">
+<section class="hero is-small  is-light">
   <div class="hero-body">
     <div class="container">
+        <h2 class="title is-3 section-header has-text-centered">Experiment Results && Visualization</h2>
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
         <!-- TODO: Replace with your research result images -->
@@ -716,7 +740,8 @@
 </div>
 </div>
 </section>
- End image carousel
+
+<!-- End image carousel-->
 
 
 
@@ -739,7 +764,7 @@
 <!--    </div>-->
 <!--  </div>-->
 <!--</section>-->
-<!-- End youtube video -->
+<!-- End youtube video-->
 
 
 <!-- Video carousel -->
