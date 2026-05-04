@@ -28,11 +28,12 @@ MsRE: Towards Efficient Remote Sensing Segmentation via Vision Foundation Models
 
 ### 🔍️🔍️ NEWS
 
+- [2026/05/04] 🧨🧨 Update project page && readme.md.
 - [2026/04/13] ✨✨ Init Repo.
 
 [//]: # (- [2025/11/17] ✨✨ The [arxiv] paper will coming soon.)
 
-## 1. Creating Virtual Environment
+## 🛠️️ 1. Creating Virtual Environment
 
 ---
 
@@ -66,8 +67,112 @@ Version relationship of mmcv and torch.
 
 [![MMCV](https://img.shields.io/badge/mmcv-vision_refer-blue)](https://mmcv.readthedocs.io/zh-cn/v1.5.0/get_started/installation.html)
 
+
+## 📂 2.Preparation of datasets
+
+---
+
+We selected Postsdam, Vaihingen and LoveDA as benchmark datasets.
+
+### 2.1 Download of datasets
+
+### ISPRS Potsdam
+
+The [Potsdam](https://www2.isprs.org/commissions/comm2/wg4/benchmark/2d-sem-label-potsdam/)
+dataset is for urban semantic segmentation used in the 2D Semantic Labeling Contest - Potsdam.
+
+The dataset can be requested at the challenge [homepage](https://www2.isprs.org/commissions/comm2/wg4/benchmark/data-request-form/).
+The '2_Ortho_RGB.zip' and '5_Labels_all_noBoundary.zip' are required.
+
+
+
+### ISPRS Vaihingen
+
+
+The [Vaihingen](https://www2.isprs.org/commissions/comm2/wg4/benchmark/2d-sem-label-vaihingen/)
+dataset is for urban semantic segmentation used in the 2D Semantic Labeling Contest - Vaihingen.
+
+The dataset can be requested at the challenge [homepage](https://www2.isprs.org/commissions/comm2/wg4/benchmark/data-request-form/).
+The 'ISPRS_semantic_labeling_Vaihingen.zip' and 'ISPRS_semantic_labeling_Vaihingen_ground_truth_eroded_COMPLETE.zip' are required.
+
+
+
+#### LoveDA
+
+The data could be downloaded from Google Drive [here](https://drive.google.com/drive/folders/1ibYV0qwn4yuuh068Rnc-w4tPi0U0c-ti?usp=sharing).
+
+Or it can be downloaded from [zenodo](https://zenodo.org/record/5706578#.YZvN7SYRXdF), you should run the following command:
+
+<details>
+<summary> loveda download</summary>
+
+```shell
+
+cd /{your_project_base_path}/Bridge/data/LoveDA
+
+# Download Train.zip
+wget https://zenodo.org/record/5706578/files/Train.zip
+# Download Val.zip
+wget https://zenodo.org/record/5706578/files/Val.zip
+# Download Test.zip
+wget https://zenodo.org/record/5706578/files/Test.zip
+```
+</details>
+
+### 2.2 Data set preprocessing
+Place the downloaded file in the corresponding path
+The format is as follows:
+
+<details>
+<summary>file structure</summary>
+
+```text
+MsRE/
+├── data/
+│   ├── LoveDA/
+│   │   ├── Test.zip
+│   │   ├── Train.zip
+│   │   └── Val.zip
+├── ├── Potsdam_RGB/
+│   │   ├── 2_Ortho_RGB.zip
+│   │   └── 5_Labels_all_noBoundary.zip
+├── ├── Vaihingen_IRRG/
+│   │   ├── ISPRS_semantic_labeling_Vaihingen.zip
+│   │   └── ISPRS_semantic_labeling_Vaihingen_ground_truth_eroded_COMPLETE.zip
+```
+</details>
+
+after that we can convert dataset:
+
+<details>
+<summary>details</summary>
+
+- Potsdam
+```shell
+python tools/convert_datasets/potsdam.py data/Potsdam_RGB/ --clip_size 512 --stride_size 512 -o data/potsdam
+```
+- Vaihingen
+```shell
+python tools/convert_datasets/vaihingen.py data/Vaihingen_IRRG/ --clip_size 512 --stride_size 256 -o data/vaihingen
+```
+
+
+- LoveDA
+```shell
+python tools/convert_datasets/loveda.py data/LoveDA/ --tmp_dir data -o data/loveda
+```
+
+</details>
+
+## 🔥 3. Training
+
+---
+**🤗🤗 The code will be released soon, so please be patient.**
+
 ## Acknowledgements
 This project is built upon [OpenMMLab](https://openmmlab.com/codebase). We thank the OpenMMLab developers.
+
+
 
 ## Citation
 If you use Geoad in your research, please cite:
