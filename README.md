@@ -28,6 +28,7 @@ MsRE: Towards Efficient Remote Sensing Segmentation via Vision Foundation Models
 
 ### 🔍️🔍️ NEWS
 
+- [2026/05/06] 📄📄 Submitted.
 - [2026/05/04] 🧨🧨 Update project page && readme.md.
 - [2026/04/13] ✨✨ Init Repo.
 
