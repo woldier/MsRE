@@ -382,28 +382,30 @@
         <div class="content has-text-justified">
           <!-- TODO: Replace with your paper abstract -->
           <p>
-              Vision Foundation Models (VFMs) pretrained on
-              large-scale datasets have significantly improved performance in
-              remote sensing semantic segmentation. However, existing methods typically rely on full fine-tuning, which requires updating
-              all model parameters. Instead of updating the full parameter
-              set, Parameter-Efficient Fine-Tuning (PEFT) achieves competitive
-              performance by optimizing only a small subset of parameters.
-              Despite its success, most existing PEFT methods are designed for
-              natural image tasks and fail to account for the unique characteristics of remote sensing imagery. To address these challenges,
-              we propose Multi-scale Cognitive Feature Refinement Tuning,
-              named MsRE, a novel PEFT method tailored for remote sensing
-              semantic segmentation. Specifically, MsRE captures multi-scale
-              contextual information by applying cognitive operations with
-              different receptive fields to intermediate features of backbone.
-              It then introduces a set of learnable tokens to establish interactions with features at different scales, enabling precise
-              feature refinement and progressive feature propagation across
-              network layers. This mechanism enhances the model’s ability
-              to understand complex remote sensing scenes and improves
-              downstream segmentation performance. With significantly fewer
-              trainable parameters, MsRE provides an efficient yet effective
-              solution for adapting VFMs to remote sensing segmentation
-              tasks. Extensive experiments demonstrate that MsRE consistently
-              outperforms existing methods.
+          Vision Foundation Models (VFMs) pre-trained on
+          large-scale datasets have significantly improved performance in
+          remote sensing semantic segmentation. However, existing methods typically rely on full fine-tuning, which requires updating
+          all model parameters. Instead of updating the full parameter
+          set, Parameter-Efficient Fine-Tuning (PEFT) achieves competitive
+          performance by optimizing only a small subset of parameters.
+          Despite its success, most existing PEFT methods are mainly
+          designed for natural image tasks and fail to account for the
+          unique multi-scale characteristics of remote sensing image. To address these challenges, we propose Multi-scale Cognitive Feature
+          Refinement Tuning, named MsRE, a novel PEFT method tailored
+          for remote sensing semantic segmentation. Specifically, MsRE
+          captures multi-scale contextual information by applying cognitive
+          operations with different cognitive fields to intermediate features
+          of backbone. It then introduces a set of learnable tokens to establish interactions with features at different scales, enabling precise
+          feature refinement and progressive feature propagation across
+          network layers. This mechanism enhances the model’s ability
+          to understand complex remote sensing scenes and improves
+          downstream segmentation performance. With significantly fewer
+          trainable parameters, MsRE provides an efficient yet effective
+          solution for adapting VFMs to remote sensing segmentation
+          tasks. Extensive experiments demonstrate that MsRE consistently outperforms existing methods. 
+            The project is available at
+          http://woldier.top/MsRE.
+
           </p>
         </div>
       </div>
