@@ -7,7 +7,7 @@ MsRE: Towards Efficient Remote Sensing Segmentation via Vision Foundation Models
 <div style="display: flex; align-items: center; justify-content: center;">
 <p align="center">
   <br align="center">
-    <a href='#'><img src='http://img.shields.io/badge/Paper-arxiv.xxx.xxx-B31B1B.svg?logo=arXiv&logoColor=B31B1B'></a>
+    <a href='https://ieeexplore.ieee.org/document/11599658'><img src='http://img.shields.io/badge/TGRS-2026.3711219-006699.svg?logo=IEEE&logoColor=006699'></a>
     <img alt="Static Badge" src="https://img.shields.io/badge/python-v3.8-green?logo=python">
     <img alt="Static Badge" src="https://img.shields.io/badge/torch-v2.1.2-B31B1B?logo=pytorch">
     <img alt="Static Badge" src="https://img.shields.io/badge/torchvision-v0.16.2-B31B1B?logo=pytorch">
@@ -28,7 +28,7 @@ MsRE: Towards Efficient Remote Sensing Segmentation via Vision Foundation Models
 
 ### 🔍️🔍️ NEWS
 
-- [2026/07/06] 🎉🎉 Our paper is accepted by IEEE TGRS!
+- [2026/07/06] 🎉🎉 Our paper is accepted by IEEE TGRS ([Link](https://ieeexplore.ieee.org/document/11599658))!
 - [2026/05/04] 🧨🧨 Update project page && readme.md.
 - [2026/04/13] ✨✨ Init Repo.
 
@@ -174,10 +174,15 @@ This project is built upon [OpenMMLab](https://openmmlab.com/codebase). We thank
 ## Citation
 If you use Geoad in your research, please cite:
 ```bibtex
-@article{,
-  title={},
-  author={},
-  journal={},
-  year={}
-}
+        @ARTICLE{11599658,
+          author={Wang, Bin and Lv, Shun and Li, Zhi and Deng, Fei and Liu, Yiguang},
+          journal={IEEE Transactions on Geoscience and Remote Sensing},
+          title={MsRE: Towards Efficient Remote Sensing Segmentation via Vision Foundation Models},
+          year={2026},
+          volume={},
+          number={},
+          pages={1-1},
+          keywords={Modeling;Remote sensing;Semantic segmentation;Training;Tuning;Decoding;LoRa;Visualization;Vegetation;Head;Vision Foundation Models;Semantic Segmentation;Parameter-Efficient Fine-Tuning;Remote Sensing},
+          doi={10.1109/TGRS.2026.3711219}
+        }
 ```
