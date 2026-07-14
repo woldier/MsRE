@@ -26,7 +26,6 @@ class MsRE(nn.Module):
         use_softmax (bool): use softmax or not. default: True.
         link_token_to_query (bool): use feature token to generate (decoder) query or not. default: True.
         scale_init (float): feature scaling factor init value. default: 0.001.
-        zero_mlp_delta_f (bool):
     """  # noqa
 
     def __init__(
@@ -36,9 +35,7 @@ class MsRE(nn.Module):
             patch_size: int,
             token_length: int = 100,
             use_softmax: bool = True,
-
             scale_init: float = 0.001,
-            # zero_mlp_delta_f: bool = False,
     ) -> None:
         super().__init__()
         self.num_layers = num_layers
@@ -48,7 +45,6 @@ class MsRE(nn.Module):
 
         self.scale_init = scale_init
         self.use_softmax = use_softmax
-        # self.zero_mlp_delta_f = zero_mlp_delta_f
         self.create_model()
 
     def create_model(self):
@@ -62,7 +58,6 @@ class MsRE(nn.Module):
         nn.init.uniform_(self.learnable_tokens.data, -val, val)
         nn.init.kaiming_uniform_(self.mlp_token2feat.weight, a=math.sqrt(5))
 
-        # self.router = nn.ModuleList([nn.Linear(self.embed_dims, 3) for _ in range(self.num_layers)])
 
         self.conv1 = nn.Conv2d(self.embed_dims, self.embed_dims, kernel_size=3, padding=3 // 2, groups=self.embed_dims)
         self.conv2 = nn.Conv2d(self.embed_dims, self.embed_dims, kernel_size=5, padding=5 // 2, groups=self.embed_dims)
@@ -77,7 +72,7 @@ class MsRE(nn.Module):
     ) -> Tensor:
         if not batch_first: # N B C ->  B N C
             feats = feats.permute(1, 0, 2)
-        if has_cls_token: # TODO 试试 不处理cls token
+        if has_cls_token:
             cls_token, feats = torch.tensor_split(feats, [1], dim=1)
         if num_reg_token > 0:
             reg_tokens, feats = torch.split(feats, [num_reg_token, feats.shape[1]-num_reg_token], dim=1)
@@ -98,7 +93,7 @@ class MsRE(nn.Module):
         feats_all = conv_all.permute(0, 1, 3, 4, 2).contiguous().reshape(b, 3, n, c)
         level_embed = self.level_encoding.weight[None,:,None,:]
         feats_all = feats_all * level_embed
-        # TODO 这里的是*, 是当时coding的问题. 按理说应该是乘法才对
+
         attn = torch.einsum("bsnc,mc->bsnm", feats_all, tokens)
 
         attn = attn * (self.embed_dims ** -0.5)
@@ -106,16 +101,11 @@ class MsRE(nn.Module):
 
         delta_f = torch.einsum(
             "bsnm,mc->bsnc",
-            attn[..., 1:],  # TODO 改成全部token
+            attn[..., 1:],
             self.mlp_token2feat(tokens[1:, :]),
         )
         # avg
         delta_f = delta_f.sum(dim=1) / 3.0 + identity
-        # router_weights =  self.router[layer](feats)
-        # router_weights = torch.softmax(router_weights, dim=-1)
-        # delta_f = router_weights[:, :, 0::3] * delta_f[:, 0, ...] + \
-        #           router_weights[:, :, 1::3] * delta_f[:, 1, ...] + \
-        #           router_weights[:, :, 2::3] * delta_f[:, 2, ...] + identity
 
         identity = delta_f
         delta_f = delta_f.reshape(b, h, w, c).permute(0, 3, 1, 2).contiguous()
@@ -148,7 +138,6 @@ class MsREConv(nn.Module):
         use_softmax (bool): use softmax or not. default: True.
         link_token_to_query (bool): use feature token to generate (decoder) query or not. default: True.
         scale_init (float): feature scaling factor init value. default: 0.001.
-        zero_mlp_delta_f (bool):
     """  # noqa
 
     def __init__(
@@ -158,9 +147,7 @@ class MsREConv(nn.Module):
             patch_size: int,
             token_length: int = 100,
             use_softmax: bool = True,
-
             scale_init: float = 0.001,
-            # zero_mlp_delta_f: bool = False,
     ) -> None:
         super().__init__()
         self.num_layers = num_layers
@@ -176,7 +163,6 @@ class MsREConv(nn.Module):
 
         self.scale = nn.Parameter(torch.tensor(self.scale_init))
 
-        # self.router = nn.ModuleList([nn.Linear(self.embed_dims, 3) for _ in range(self.num_layers)])
 
         self.conv1 = nn.Conv2d(self.embed_dims, self.embed_dims, kernel_size=3, padding=3 // 2, groups=self.embed_dims)
         self.conv2 = nn.Conv2d(self.embed_dims, self.embed_dims, kernel_size=5, padding=5 // 2, groups=self.embed_dims)
