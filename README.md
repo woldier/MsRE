@@ -4,6 +4,19 @@
 MsRE: Towards Efficient Remote Sensing Segmentation via Vision Foundation Models
 </h2>
 
+Bin Wang <sup>1</sup>,
+Shun Lv <sup>1</sup>,
+Zhi Li <sup>1</sup>,
+Fei Deng <sup>2</sup>,
+Yiguang Liu<sup>1†</sup>
+
+<sup>1</sup> Sichuan University
+<sup>2</sup> Chengdu University of Technology
+
+<sup>†</sup> Corresponding author.
+
+[//]: # (<sup>*</sup> Equal contribution.)
+
 <div style="display: flex; align-items: center; justify-content: center;">
 <p align="center">
   <br align="center">
@@ -17,6 +30,7 @@ MsRE: Towards Efficient Remote Sensing Segmentation via Vision Foundation Models
     <img alt="GitHub Issues or Pull Requests" src="https://img.shields.io/github/issues-closed/woldier/MsRE?color=ab7df8">
     <img alt="GitHub forks" src="https://img.shields.io/github/forks/woldier/MsRE?style=flat&color=red">
     <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/woldier/MsRE?style=flat&color=af2626">
+    <img src="https://visitor-badge.laobi.icu/badge?page_id=BinWang.MsRE&left_color=%2363C7E6&right_color=%23CEE75F">
 </p>
 </div>
 <br/>
@@ -27,12 +41,54 @@ MsRE: Towards Efficient Remote Sensing Segmentation via Vision Foundation Models
 
 
 ### 🔍️🔍️ NEWS
-
+- [2026/07/14] 🤗🤗 The `Training Code` has been updated.
 - [2026/07/06] 🎉🎉 Our paper is accepted by IEEE TGRS ([Link](https://ieeexplore.ieee.org/document/11599658))!
 - [2026/05/04] 🧨🧨 Update project page && readme.md.
 - [2026/04/13] ✨✨ Init Repo.
 
 [//]: # (- [2025/11/17] ✨✨ The [arxiv] paper will coming soon.)
+
+## 📖 Clone Repo
+
+---
+We add [mmsegmentation](https://github.com/open-mmlab/mmsegmentation) as our repository 
+[submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) .
+
+So, one should clone this repository use the script as follows:
+
+<details>
+<summary>clone repository</summary>
+
+```shell
+git clone --recurse-submodules https://github.com/woldier/MsRE
+
+
+```
+> ### Tips
+> If one already cloned the project and forgot --recurse-submodules,
+> 
+> ```shell
+>  # cloned the project and forgot clone submodules 🥲🥲
+>  git clone https://github.com/woldier/Bridge 
+> 
+>  # initialize and update each submodule in the repository 🥰🥰
+>  git submodule update --init
+>  ```
+> 
+
+</details>
+
+
+after that, we link `mmsegmentation/mmseg` $\to$ `mmseg`:
+
+<details>
+<summary>soft link</summary>
+
+```shell
+$ pwd work_dir/MsRE
+ln -s mmsegmentation/mmseg mmseg
+```
+</details>
 
 ## 🛠️️ 1. Creating Virtual Environment
 
@@ -164,7 +220,21 @@ python tools/convert_datasets/loveda.py data/LoveDA/ --tmp_dir data -o data/love
 
 ## 🔥 3. Training
 
-**🤗🤗 The code will be released soon, so please be patient.**
+<details>
+<summary>training scripts</summary>
+
+```bash
+# loveda
+python tools/train.py configs/msre/msre_dinov3_vit-large_segmentor_1xb2-amp-40k_loveda-512x512.py
+
+# potsdam
+python tools/train.py configs/msre/msre_dinov3_vit-large_segmentor_1xb2-amp-40k_potsdam-512x512.py
+
+# vaihingen
+python tools/train.py configs/msre/msre_dinov3_vit-large_segmentor_1xb2-amp-40k_vaihingen-512x512.py
+```
+</details>
+
 
 ## Acknowledgements
 This project is built upon [OpenMMLab](https://openmmlab.com/codebase). We thank the OpenMMLab developers.
