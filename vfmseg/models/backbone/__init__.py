@@ -1,0 +1,1 @@
+from .dinov3_vision_transfromer import DINOv3ViT
