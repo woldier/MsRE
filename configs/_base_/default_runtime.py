@@ -14,4 +14,4 @@ resume = False
 
 tta_model = dict(type='SegTTAModel')
 
-custom_imports = dict(imports=['vfmseg'], allow_failed_imports=False)
+custom_imports = dict(imports=['msre'], allow_failed_imports=False)
