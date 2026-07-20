@@ -313,8 +313,7 @@ class DINOv3ViTAttention(nn.Module):
         # attention_interface: Callable = eager_attention_forward
         # if self.config._attn_implementation != "eager":
         #     attention_interface = ALL_ATTENTION_FUNCTIONS['sdpa']
-        from transformers.modeling_utils import ALL_ATTENTION_FUNCTIONS
-        attn_output, attn_weights = ALL_ATTENTION_FUNCTIONS['sdpa'](
+        attn_output, attn_weights = eager_attention_forward(
             self,
             query_states,
             key_states,

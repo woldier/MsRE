@@ -127,98 +127,6 @@ class MsRE(nn.Module):
             feats_out = feats_out.permute(1, 0, 2)
         return feats_out
 
-class MsREConv(nn.Module):
-    """
-
-    Args:
-        num_layers (int): depth of transformer.
-        embed_dims (int): embedding dimension.
-        patch_size (int): the patch size.
-        token_length (int): feature token lenth. default: 100.
-        use_softmax (bool): use softmax or not. default: True.
-        link_token_to_query (bool): use feature token to generate (decoder) query or not. default: True.
-        scale_init (float): feature scaling factor init value. default: 0.001.
-    """  # noqa
-
-    def __init__(
-            self,
-            num_layers: int,
-            embed_dims: int,
-            patch_size: int,
-            token_length: int = 100,
-            use_softmax: bool = True,
-            scale_init: float = 0.001,
-    ) -> None:
-        super().__init__()
-        self.num_layers = num_layers
-        self.embed_dims = embed_dims
-        self.patch_size = patch_size
-        self.token_length = token_length
-
-        self.scale_init = scale_init
-        self.use_softmax = use_softmax
-        self.create_model()
-
-    def create_model(self):
-
-        self.scale = nn.Parameter(torch.tensor(self.scale_init))
-
-
-        self.conv1 = nn.Conv2d(self.embed_dims, self.embed_dims, kernel_size=3, padding=3 // 2, groups=self.embed_dims)
-        self.conv2 = nn.Conv2d(self.embed_dims, self.embed_dims, kernel_size=5, padding=5 // 2, groups=self.embed_dims)
-        self.conv3 = nn.Conv2d(self.embed_dims, self.embed_dims, kernel_size=7, padding=7 // 2, groups=self.embed_dims)
-
-        self.projector = nn.Conv2d(self.embed_dims, self.embed_dims, kernel_size=1, )
-
-
-    def forward(
-            self, feats: Tensor, layer: int,
-            batch_first=True, has_cls_token=True, num_reg_token=0,
-    ) -> Tensor:
-        if not batch_first: # N B C ->  B N C
-            feats = feats.permute(1, 0, 2)
-        if has_cls_token: # TODO 试试 不处理cls token
-            cls_token, feats = torch.tensor_split(feats, [1], dim=1)
-        if num_reg_token > 0:
-            reg_tokens, feats = torch.split(feats, [num_reg_token, feats.shape[1]-num_reg_token], dim=1)
-        # tokens = self.learnable_tokens[layer]
-
-        b, n, c = feats.shape
-        h = w = int(n**0.5)
-
-        identity = feats
-        # feat   B N C -> B C H W
-        feats_hw = feats.reshape(b, h, w, c).permute(0, 3, 1, 2).contiguous()
-
-        conv1_x = self.conv1(feats_hw)
-        conv2_x = self.conv2(feats_hw)
-        conv3_x = self.conv3(feats_hw)
-        # B 3 C H W
-        conv_all = torch.stack([conv1_x, conv2_x, conv3_x], dim=1)
-        feats_all = conv_all.permute(0, 1, 3, 4, 2).contiguous().reshape(b, 3, n, c)
-        delta_f = feats_all
-        # avg
-        delta_f = delta_f.sum(dim=1) / 3.0 + identity
-
-        identity = delta_f
-        delta_f = delta_f.reshape(b, h, w, c).permute(0, 3, 1, 2).contiguous()
-        delta_f = self.projector(delta_f)
-        delta_f = delta_f.permute(0, 2, 3, 1).reshape(b, n, c).contiguous()
-
-        delta_f = delta_f + identity
-
-        delta_feat = delta_f * self.scale + feats
-
-        cat_feat = []
-        if has_cls_token:
-            cat_feat.append(cls_token)
-        if num_reg_token > 0:
-            cat_feat.append(reg_tokens)
-        cat_feat.append(delta_feat)
-        feats_out = torch.cat(cat_feat, dim=1)
-        if not batch_first:
-            feats_out = feats_out.permute(1, 0, 2)
-        return feats_out
 
 @MODELS.register_module()
 class MsReDINOv3(DINOv3ViT):
@@ -227,8 +135,6 @@ class MsReDINOv3(DINOv3ViT):
         tp = msre_config.pop('type', None)
         if tp is None or tp == 'vanilla':
             self.msre: MsRE = MsRE(**msre_config)
-        if tp == 'conv':
-            self.msre: MsREConv = MsREConv(**msre_config)
 
     def forward(self,  pixel_values: torch.Tensor,
             bool_masked_pos: Optional[torch.Tensor] = None,
